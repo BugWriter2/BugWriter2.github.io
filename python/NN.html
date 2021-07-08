@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Neural Networks | 学习笔记</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    <link rel="icon" href="/img/logo.ico">
+    <link rel="manifest" href="/manifest.json"><link rel='canonical' href='https://bugwriter2.github.io/python/NN.html'/>
+    <meta name="description" content="博客">
+    <meta name="google-site-verification" content="PXbr-y9acmnnEmw1zgCFEydL32xlZIf1OfFmzDFUrzI">
+    <link rel="preload" href="/assets/css/0.styles.9ce6ac63.css" as="style"><link rel="preload" href="/assets/js/app.a86ae29a.js" as="script"><link rel="preload" href="/assets/js/2.398272b2.js" as="script"><link rel="preload" href="/assets/js/20.1191a034.js" as="script"><link rel="prefetch" href="/assets/js/10.96eafc1f.js"><link rel="prefetch" href="/assets/js/11.504367c7.js"><link rel="prefetch" href="/assets/js/12.8606f159.js"><link rel="prefetch" href="/assets/js/13.9e725139.js"><link rel="prefetch" href="/assets/js/14.97cae85a.js"><link rel="prefetch" href="/assets/js/15.4faba8c8.js"><link rel="prefetch" href="/assets/js/16.c5a42da6.js"><link rel="prefetch" href="/assets/js/17.f94f283b.js"><link rel="prefetch" href="/assets/js/18.2f1a786e.js"><link rel="prefetch" href="/assets/js/19.d11dbe36.js"><link rel="prefetch" href="/assets/js/21.c53b74d0.js"><link rel="prefetch" href="/assets/js/22.9c99235b.js"><link rel="prefetch" href="/assets/js/23.676681d7.js"><link rel="prefetch" href="/assets/js/24.a2edb338.js"><link rel="prefetch" href="/assets/js/25.1bcdd3ed.js"><link rel="prefetch" href="/assets/js/3.02e4f1cf.js"><link rel="prefetch" href="/assets/js/4.135bbd3e.js"><link rel="prefetch" href="/assets/js/5.0cc9a2cb.js"><link rel="prefetch" href="/assets/js/6.e235e213.js"><link rel="prefetch" href="/assets/js/7.de040224.js"><link rel="prefetch" href="/assets/js/8.97611fa0.js"><link rel="prefetch" href="/assets/js/9.a677993e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9ce6ac63.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">学习笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博文" class="dropdown-title"><span class="title">博文</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/python/" class="nav-link router-link-active">
+  Python
+</a></li><li class="dropdown-item"><!----> <a href="/dv/" class="nav-link">
+  Data Visualization
+</a></li><li class="dropdown-item"><!----> <a href="/dl/" class="nav-link">
+  Deep Learning
+</a></li><li class="dropdown-item"><!----> <a href="/dc/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/qa/" class="nav-link">
+  Q&amp;A
+</a></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">
+  关于
+</a></div><div class="nav-item"><a href="https://www.github.com/bugwriter2" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博文" class="dropdown-title"><span class="title">博文</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/python/" class="nav-link router-link-active">
+  Python
+</a></li><li class="dropdown-item"><!----> <a href="/dv/" class="nav-link">
+  Data Visualization
+</a></li><li class="dropdown-item"><!----> <a href="/dl/" class="nav-link">
+  Deep Learning
+</a></li><li class="dropdown-item"><!----> <a href="/dc/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/qa/" class="nav-link">
+  Q&amp;A
+</a></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">
+  关于
+</a></div><div class="nav-item"><a href="https://www.github.com/bugwriter2" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/python/Basics.html" class="sidebar-link">Basics</a></li><li><a href="/python/Web.html" class="sidebar-link">Web</a></li><li><a href="/python/NN.html" aria-current="page" class="active sidebar-link">Neural Networks</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/python/NN.html#numpy" class="sidebar-link">numpy</a></li><li class="sidebar-sub-header"><a href="/python/NN.html#pandas" class="sidebar-link">pandas</a></li></ul></li><li><a href="/python/Test.html" class="sidebar-link">Test</a></li><li><a href="/python/PDF.html" class="sidebar-link">PDF</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="neural-networks"><a href="#neural-networks" class="header-anchor">#</a> Neural Networks</h1> <h2 id="numpy"><a href="#numpy" class="header-anchor">#</a> <code>numpy</code></h2> <ol><li><p><code>nan</code></p> <div class="language-python extra-class"><pre class="language-python"><code>l <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">&quot;nan&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>nan<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment"># [nan, nan] in type float64</span>
+np<span class="token punctuation">.</span>isnan<span class="token punctuation">(</span>l<span class="token punctuation">)</span> <span class="token comment"># [True, True]</span>
+
+l <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">&quot;nan&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>nan<span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token comment"># [nan, nan] in type object</span>
+np<span class="token punctuation">.</span>isnan<span class="token punctuation">(</span>l<span class="token punctuation">)</span> <span class="token comment"># exception thrown saying cannot coerce object to float64</span>
+
+l<span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token comment"># [True, True] non 0 or non False then True</span>
+
+np<span class="token punctuation">.</span>nan <span class="token operator">==</span> np<span class="token punctuation">.</span>nan <span class="token comment"># False</span>
+<span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">&quot;nan&quot;</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">&quot;nan&quot;</span><span class="token punctuation">)</span> <span class="token comment"># False</span>
+</code></pre></div></li> <li><p><code>np.concatenate((l1, l2), axis=1)</code></p> <p>stacking on existing axis</p></li> <li><p><code>np.stack(sequence, axis=0)</code></p> <p>stacking on a new axis</p> <div class="language-python extra-class"><pre class="language-python"><code>a <span class="token operator">=</span> <span class="token punctuation">[</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token comment"># 2x (2,)</span>
+np<span class="token punctuation">.</span>stack<span class="token punctuation">(</span>a<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment"># [['a', 'b'],['c', 'd']] # 2x2</span>
+np<span class="token punctuation">.</span>vstack<span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token comment"># [['a', 'b'],['c', 'd']] # 2x2</span>
+</code></pre></div></li> <li><p><code>np.expand_dims</code></p> <p>create a new axis with dim 1</p> <div class="language-python extra-class"><pre class="language-python"><code>a <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment"># (2,)</span>
+np<span class="token punctuation">.</span>expand_dims<span class="token punctuation">(</span>x<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment"># (1, 2)</span>
+</code></pre></div></li> <li><p><code>np.setdiff1d(l1, l2)</code></p></li> <li><p><code>np.percentile</code></p> <ul><li>Formula: <code>q/100 * (number - 1) 0 index</code></li> <li>Interpolation:
+<ul><li>linear: i + (j - i) * fraction</li> <li>midpoint</li> <li>lower</li> <li>higher</li></ul></li> <li>0th =&gt; minimum</li> <li>100th =&gt; maximum</li> <li>another formula: <code>q/100 * (number + 1) 1-index</code>, only 0th percentile and <strong>no 100th percentile</strong> (<strong>number of others smaller than you</strong>)</li></ul></li></ol> <h2 id="pandas"><a href="#pandas" class="header-anchor">#</a> <code>pandas</code></h2> <div class="custom-block tip"><p class="custom-block-title">API Documentation</p> <p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/" target="_blank" rel="noopener noreferrer">pandas official api doc<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <ol><li><p>Return types</p> <div class="language-python extra-class"><pre class="language-python"><code>df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token comment"># Series</span>
+df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>values <span class="token comment"># np</span>
+df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>unique<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># np</span>
+</code></pre></div></li> <li><p>Assign</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p><strong>Assignment with <code>df.loc</code>:</strong></p> <ul><li><code>df.loc[mask, cols]</code> =&gt; <code>cols</code> must exist</li> <li>if <code>df.loc[mask, col]</code> gives series, only series can be assigned and others will get <code>NaN</code> assigned</li> <li>if <code>df.loc[mask, col]</code> gives dataframe, dataframe with matched column names or series can be assigned and others will get <code>NaN</code> assigned</li></ul> <p><strong>Assignment with <code>[]</code>:</strong></p> <ul><li><code>[]</code> does not support mask</li> <li>anything can be assigned as long as shape is matched</li></ul></div> <p>Assignment with <code>df.loc</code>:</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># df_b.loc =&gt; dataframe</span>
+<span class="token comment"># df_a's cols should be cols</span>
+df_b<span class="token punctuation">.</span>loc<span class="token punctuation">[</span>mask<span class="token punctuation">,</span> cols<span class="token punctuation">]</span> <span class="token operator">=</span> df_a
+
+<span class="token comment"># df_b.loc =&gt; dataframe</span>
+<span class="token comment"># df_a's cols do not matter</span>
+df_b<span class="token punctuation">.</span>loc<span class="token punctuation">[</span>mask<span class="token punctuation">,</span> cols<span class="token punctuation">]</span> <span class="token operator">=</span> df_a<span class="token punctuation">.</span>values
+
+<span class="token comment"># df_b.loc =&gt; series</span>
+<span class="token comment"># only series can be assigned</span>
+df_b<span class="token punctuation">[</span>mask<span class="token punctuation">,</span> col<span class="token punctuation">]</span> <span class="token operator">=</span> df_a<span class="token punctuation">.</span>values
+</code></pre></div><p>Assignment with <code>[]</code>:</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># anything is okay</span>
+df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df_a<span class="token punctuation">.</span>values
+df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df_a
+df<span class="token punctuation">[</span>cols<span class="token punctuation">]</span> <span class="token operator">=</span> df_a
+df<span class="token punctuation">[</span>cols<span class="token punctuation">]</span> <span class="token operator">=</span> df_a<span class="token punctuation">.</span>values
+df<span class="token punctuation">[</span>col_not_exist<span class="token punctuation">]</span> <span class="token operator">=</span> df_a
+
+<span class="token comment"># if value to assign is a scalar</span>
+df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'str'</span>
+df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'str'</span><span class="token punctuation">,</span> <span class="token string">'str'</span><span class="token punctuation">)</span> <span class="token comment"># quick assign not support tuple</span>
+</code></pre></div></li> <li><p><code>nan</code></p> <div class="language-python extra-class"><pre class="language-python"><code>df<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># same as isnan</span>
+df<span class="token punctuation">.</span>isnan<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div></li> <li><p>inplace</p> <ul><li>Yes: drop, rename, drop_duplicates, replace, fillna</li> <li>No: merge, join</li> <li>Problematic: multi-cols, <code>df.loc[:, [col1, col2]].fillna('', inplace=True)</code> not working</li></ul></li> <li><p><code>drop</code></p> <div class="language-python extra-class"><pre class="language-python"><code>df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span><span class="token punctuation">[</span>a<span class="token punctuation">,</span><span class="token builtin">list</span><span class="token punctuation">]</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment"># drop rows, list is indices</span>
+df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span><span class="token punctuation">[</span>a<span class="token punctuation">,</span><span class="token builtin">list</span><span class="token punctuation">]</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment"># drop cols, list is columns names</span>
+</code></pre></div></li> <li><p>square</p> <ul><li><code>df[col]</code> =&gt; series</li> <li><code>df[[col1, col2]]</code> =&gt; depreciated, dataframe</li> <li><code>df[col1, col2]</code> =&gt; depreciated, dataframe</li> <li><code>df[[col]]</code> =&gt; dataframe</li> <li><code>df.loc[mask, col]</code> =&gt; series</li> <li><code>df.loc[mask, [col]]</code> =&gt; dataframe</li> <li><code>df.loc[mask, [col1, col]]</code> =&gt; dataframe</li> <li><code>groupby(key_col, as_index=False)[col]</code> =&gt; DataFrameGroupBy, but works as series</li> <li><code>groupby(key_col)[col]</code> =&gt; SeriesGroupBy</li> <li><code>groupby(key_col)[[col]]</code> =&gt; DataFrameGroupBy</li></ul></li> <li><p>Combine a column inside groups</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># x is a series</span>
+df <span class="token operator">=</span> df<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span>key_col<span class="token punctuation">)</span><span class="token punctuation">[</span>col_to_combine<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> join_function<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># x is a dataframe</span>
+df <span class="token operator">=</span> df<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span>key_col<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">[</span>col_to_combine<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> join_function<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># x is a series</span>
+df_golden<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>index<span class="token operator">=</span>key_col<span class="token punctuation">,</span> values<span class="token operator">=</span>col_to_combine<span class="token punctuation">,</span> aggfunc<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> join_function<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div></li> <li><p><code>apply</code></p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>if use dataframe, refer column values by column name</p> <p>if use series, refer column value by integer</p></div> <ul><li><p>groupby</p> <ul><li><code>groupby(key_col, as_index=False)[col]</code> in, <code>apply</code> uses series</li> <li>other dataframes in, <code>apply</code> uses dataframe</li> <li>series in, <code>apply</code> uses series</li> <li><code>sort=True(default)</code> group order is sorted</li></ul></li> <li><p>df</p> <div class="custom-block warning"><p class="custom-block-title">Understanding axis</p> <p><code>axis</code> is 0, apply along the row, resulting a <strong>column</strong> is passed in</p></div> <ul><li>dataframe or series in, <code>apply</code> always uses series</li> <li><code>apply(axis=1)</code> =&gt; group columns, pass in a row</li> <li><code>apply(axis=0)</code> =&gt; group rows, pass in a col</li> <li><code>apply(lambda,result_type=None)</code> =&gt; (default),only act when <code>axis=1</code>. Determine the return type by passing an empty series. If error, return type is dataframe. If series, return type is dataframe. If returns a list/scalar, final result will be a series</li> <li><code>apply(lambda,result_type=reduce)</code> =&gt; only act when <code>axis=1</code>, final result will be a series if possible (error or list/scalar)</li> <li><code>apply(lambda,result_type=expand)</code> =&gt; only act when <code>axis=1</code>, final result will be a dataframe if possible (error or series or list)</li> <li><code>apply(lambda,result_type=broadcast)</code> =&gt; only act when <code>axis=1</code>, final result will be broadcast to a dataframe</li></ul> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">def</span> <span class="token function">custom_function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">return</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token comment"># result_type is None, lambda returns a series [silent error, empty_df passes empty series x, which does not have index 0, thus this series x is returned back]</span>
+<span class="token comment"># result is df</span>
+empty_df<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> custom_function<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+    foo
+&quot;&quot;&quot;</span>
+
+<span class="token comment"># result_type is None, lambda returns a scalar</span>
+<span class="token comment"># result is series</span>
+df<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> custom_function<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+0    1
+1    1
+2    1
+dtype: int64
+&quot;&quot;&quot;</span>
+
+<span class="token comment"># result_type is None, lambda returns a list</span>
+<span class="token comment"># result is series</span>
+df<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+0    [1, 2]
+1    [1, 2]
+2    [1, 2]
+dtype: object
+&quot;&quot;&quot;</span>
+
+<span class="token comment"># result_type is None, lambda returns a series</span>
+<span class="token comment"># result is df</span>
+df<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+    foo  bar
+0    1    2
+1    1    2
+2    1    2
+&quot;&quot;&quot;</span>
+
+<span class="token comment"># result_type is expand, lambda returns a list</span>
+<span class="token comment"># result is df</span>
+df<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> result_type<span class="token operator">=</span><span class="token string">'expand'</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+   0  1
+0  1  2
+1  1  2
+2  1  2
+&quot;&quot;&quot;</span>
+
+<span class="token comment"># result_type is reduce, lambda returns a list</span>
+<span class="token comment"># result is series</span>
+df<span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> result_type<span class="token operator">=</span><span class="token string">'reduce'</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+0    [1, 2]
+1    [1, 2]
+2    [1, 2]
+dtype: object
+&quot;&quot;&quot;</span>
+</code></pre></div></li></ul></li> <li><p><code>transform</code></p> <ul><li><code>groupby</code> <ul><li><code>transform</code> gets a column passed in and expands the result to the same shape(and same order) as argument; if the passed columns is the group column, <code>x.name</code> is the group name, otherwise, <code>x.name</code> is the column name</li> <li><code>apply</code> can have a column, a row or a dataframe passed in and the lambda result is not expanded. Thus it can return variable shape data frame</li></ul></li> <li><code>df</code> <ul><li><code>transform</code> can get both as column and row, but the lambda function must return the results with the same shape as input</li></ul></li></ul></li> <li><p><code>filter</code></p> <div class="language-python extra-class"><pre class="language-python"><code>df<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>like<span class="token operator">=</span><span class="token string">'abc'</span><span class="token punctuation">)</span> <span class="token comment"># columns containing abc, case sensitive.</span>
+df<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>like<span class="token operator">=</span><span class="token string">'abc'</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment"># index labels containing abc, case sensitive.</span>
+df<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>regex<span class="token operator">=</span><span class="token string">r'[a-z]'</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>items<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div></li> <li><p><code>replace</code></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># full match then replace</span>
+df<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'value_full_match'</span><span class="token punctuation">,</span> <span class="token string">'123'</span><span class="token punctuation">)</span>
+<span class="token comment"># to replace None, use dict</span>
+df<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token boolean">None</span><span class="token punctuation">:</span> <span class="token string">'123'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># if regex, as long as the pattern is found, then replace</span>
+df<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'value_contain'</span><span class="token punctuation">,</span> <span class="token string">'123'</span> regex<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+</code></pre></div></li> <li><p><code>merge</code> vs <code>join</code> <code>merge</code> can work on columns, whereas <code>join</code> must work on indices</p></li> <li><p><code>groupby</code></p> <p>column first or function first are all okay</p> <ul><li><code>count</code>: count non-NaN values in a group</li> <li><code>nunique</code>: count unique non-NaN values in a group</li></ul></li> <li><p><code>pivot_table</code></p> <p>create columns from values in rows, given the below dataframe:</p> <div class="language-python extra-class"><pre class="language-python"><code>     yearPassed  policyType  count
+<span class="token number">0</span>       <span class="token number">1990</span>        <span class="token number">1</span>        <span class="token number">2000</span>
+<span class="token number">1</span>       <span class="token number">1990</span>        <span class="token number">2</span>        <span class="token number">1400</span>
+<span class="token number">2</span>       <span class="token number">1990</span>        <span class="token number">3</span>        <span class="token number">1200</span>
+<span class="token number">3</span>       <span class="token number">1991</span>        <span class="token number">3</span>        <span class="token number">70</span>
+<span class="token number">4</span>       <span class="token number">1992</span>        <span class="token number">2</span>        <span class="token number">1000</span>
+<span class="token number">5</span>       <span class="token number">1992</span>        <span class="token number">3</span>        <span class="token number">800</span>
+</code></pre></div><div class="language-python extra-class"><pre class="language-python"><code>df <span class="token operator">=</span> df<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'yearPassed'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'policyType'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> values<span class="token operator">=</span><span class="token string">'count'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fillna<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+df <span class="token comment"># column is a index</span>
+
+policyType       <span class="token number">1</span>       <span class="token number">2</span>       <span class="token number">3</span>
+yearPassed
+<span class="token number">1990</span>        <span class="token number">2000.0</span>  <span class="token number">1400.0</span>  <span class="token number">1200.0</span>
+<span class="token number">1991</span>           <span class="token number">0.0</span>     <span class="token number">0.0</span>    <span class="token number">70.0</span>
+<span class="token number">1992</span>           <span class="token number">0.0</span>  <span class="token number">1000.0</span>   <span class="token number">800.0</span>
+
+df<span class="token punctuation">.</span>columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'p1'</span><span class="token punctuation">,</span> <span class="token string">'p2'</span><span class="token punctuation">,</span> <span class="token string">'p3'</span><span class="token punctuation">]</span>
+df
+               p1      p2      p3
+yearPassed
+<span class="token number">1990</span>        <span class="token number">2000.0</span>  <span class="token number">1400.0</span>  <span class="token number">1200.0</span>
+<span class="token number">1991</span>           <span class="token number">0.0</span>     <span class="token number">0.0</span>    <span class="token number">70.0</span>
+<span class="token number">1992</span>           <span class="token number">0.0</span>  <span class="token number">1000.0</span>   <span class="token number">800.0</span>
+</code></pre></div></li> <li><p>date wrangling</p> <ul><li><p>float epoch(unit, seconds) to <code>pd.Timestamp</code></p> <div class="language-python extra-class"><pre class="language-python"><code>pd<span class="token punctuation">.</span>to_datetime<span class="token punctuation">(</span>df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">,</span> unit<span class="token operator">=</span><span class="token string">'s'</span><span class="token punctuation">)</span>
+</code></pre></div></li> <li><p>methods from <code>pd.Timestamp</code></p> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p><code>pd.Timestamp</code> cols' getting value (<code>df[col].values</code>) will results in <code>np.datetime64</code> which does not contain timezone info</p></div> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># datetime.weekday()</span>
+<span class="token comment"># 0 is monday</span>
+<span class="token comment"># 6 is sunday</span>
+df<span class="token punctuation">[</span>timestamp_col<span class="token punctuation">]</span><span class="token punctuation">.</span>dt<span class="token punctuation">.</span>weekday
+
+<span class="token comment"># get datetime.date object</span>
+<span class="token comment"># datetime.date(2020, 6, 6)</span>
+df<span class="token punctuation">[</span>timestamp_col<span class="token punctuation">]</span><span class="token punctuation">.</span>dt<span class="token punctuation">.</span>date
+
+<span class="token comment"># timezone conversion</span>
+df<span class="token punctuation">[</span>zone_aware_col<span class="token punctuation">]</span> <span class="token operator">=</span> pd<span class="token punctuation">.</span>to_datetime<span class="token punctuation">(</span>df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">,</span> unit<span class="token operator">=</span><span class="token string">'s'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>dt<span class="token punctuation">.</span>tz_localize<span class="token punctuation">(</span><span class="token string">'UTC'</span><span class="token punctuation">)</span>
+<span class="token comment"># before conversion, pd.Timestamp must have timezone assigned</span>
+df<span class="token punctuation">[</span>zone_aware_col<span class="token punctuation">]</span><span class="token punctuation">.</span>dt<span class="token punctuation">.</span>tz_convert<span class="token punctuation">(</span><span class="token string">'Asia/Singapore'</span><span class="token punctuation">)</span>
+</code></pre></div></li></ul></li> <li><p>Problem solving</p> <div class="language-python extra-class"><pre class="language-python"><code>answer_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">solve_problem_with_small_df</span><span class="token punctuation">(</span>small_df<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">for</span> index_label<span class="token punctuation">,</span> row <span class="token keyword">in</span> small_df<span class="token punctuation">.</span>iterrows<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+
+<span class="token keyword">for</span> index_label<span class="token punctuation">,</span> small_df <span class="token keyword">in</span> df<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span>key_col<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+  solved_df <span class="token operator">=</span> solve_problem_with_small_df<span class="token punctuation">(</span>small_df<span class="token punctuation">)</span>
+  answer_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>solved_df<span class="token punctuation">)</span>
+
+pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span>answer_list<span class="token punctuation">)</span>
+</code></pre></div><p>example:</p> <div class="language-python extra-class"><pre class="language-python"><code>df_golden<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'Field ID'</span><span class="token punctuation">,</span> values<span class="token operator">=</span><span class="token string">'Pages Gold'</span><span class="token punctuation">,</span> aggfunc<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">','</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+df_golden<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token string">'Field ID'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'Pages Gold'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token string">','</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> idx<span class="token punctuation">,</span> page_series <span class="token keyword">in</span> df_golden<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token string">'Field ID'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'Pages Gold'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+  l <span class="token operator">=</span> <span class="token string">','</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>page_series<span class="token punctuation">)</span>
+</code></pre></div></li></ol></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">1/19/2021, 11:58:25 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/python/Web.html" class="prev">
+        Web
+      </a></span> <span class="next"><a href="/python/Test.html">
+        Test
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.a86ae29a.js" defer></script><script src="/assets/js/2.398272b2.js" defer></script><script src="/assets/js/20.1191a034.js" defer></script>
+  </body>
+</html>
