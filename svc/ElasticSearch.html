@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ElasticSearch | 学习笔记</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    <link rel="icon" href="/img/logo.ico">
+    <link rel="manifest" href="/manifest.json"><link rel='canonical' href='https://bugwriter2.github.io/svc/ElasticSearch.html'/>
+    <meta name="description" content="博客">
+    <meta name="google-site-verification" content="PXbr-y9acmnnEmw1zgCFEydL32xlZIf1OfFmzDFUrzI">
+    <link rel="preload" href="/assets/css/0.styles.9ce6ac63.css" as="style"><link rel="preload" href="/assets/js/app.3fa2a2e1.js" as="script"><link rel="preload" href="/assets/js/2.057925ea.js" as="script"><link rel="preload" href="/assets/js/38.a184b552.js" as="script"><link rel="prefetch" href="/assets/js/10.9a53695e.js"><link rel="prefetch" href="/assets/js/11.e6f60bd9.js"><link rel="prefetch" href="/assets/js/12.90f3d785.js"><link rel="prefetch" href="/assets/js/13.42e681ed.js"><link rel="prefetch" href="/assets/js/14.7a85d7cd.js"><link rel="prefetch" href="/assets/js/15.402110d9.js"><link rel="prefetch" href="/assets/js/16.776ab4c1.js"><link rel="prefetch" href="/assets/js/17.4af5340c.js"><link rel="prefetch" href="/assets/js/18.bd060f5e.js"><link rel="prefetch" href="/assets/js/19.ac40939f.js"><link rel="prefetch" href="/assets/js/20.ac68ccd2.js"><link rel="prefetch" href="/assets/js/21.90d4b479.js"><link rel="prefetch" href="/assets/js/22.044d8e2b.js"><link rel="prefetch" href="/assets/js/23.606676bb.js"><link rel="prefetch" href="/assets/js/24.e8a14162.js"><link rel="prefetch" href="/assets/js/25.ebdc5e35.js"><link rel="prefetch" href="/assets/js/26.efd6b8fb.js"><link rel="prefetch" href="/assets/js/27.649d5e23.js"><link rel="prefetch" href="/assets/js/28.1c7ccf18.js"><link rel="prefetch" href="/assets/js/29.f0ca98d8.js"><link rel="prefetch" href="/assets/js/3.7c0ca1fc.js"><link rel="prefetch" href="/assets/js/30.540536d8.js"><link rel="prefetch" href="/assets/js/31.3cc7b8a3.js"><link rel="prefetch" href="/assets/js/32.02879a8f.js"><link rel="prefetch" href="/assets/js/33.b1417b92.js"><link rel="prefetch" href="/assets/js/34.0b5079cd.js"><link rel="prefetch" href="/assets/js/35.2828b1d3.js"><link rel="prefetch" href="/assets/js/36.d0d0971a.js"><link rel="prefetch" href="/assets/js/37.6cc365c3.js"><link rel="prefetch" href="/assets/js/39.84a689f9.js"><link rel="prefetch" href="/assets/js/4.7a06b201.js"><link rel="prefetch" href="/assets/js/40.c2d886c6.js"><link rel="prefetch" href="/assets/js/5.0de0ba0e.js"><link rel="prefetch" href="/assets/js/6.cb2a4e71.js"><link rel="prefetch" href="/assets/js/7.f7f97492.js"><link rel="prefetch" href="/assets/js/8.7c626f1f.js"><link rel="prefetch" href="/assets/js/9.b014d1e7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9ce6ac63.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">学习笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博文" class="dropdown-title"><span class="title">博文</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/python/" class="nav-link">
+  Python
+</a></li><li class="dropdown-item"><!----> <a href="/dv/" class="nav-link">
+  Data Visualization
+</a></li><li class="dropdown-item"><!----> <a href="/dl/" class="nav-link">
+  Deep Learning
+</a></li><li class="dropdown-item"><!----> <a href="/dc/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/qa/" class="nav-link">
+  Q&amp;A
+</a></li><li class="dropdown-item"><!----> <a href="/svc/" class="nav-link router-link-active">
+  Backend Services
+</a></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">
+  关于
+</a></div><div class="nav-item"><a href="https://www.github.com/bugwriter2" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博文" class="dropdown-title"><span class="title">博文</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/python/" class="nav-link">
+  Python
+</a></li><li class="dropdown-item"><!----> <a href="/dv/" class="nav-link">
+  Data Visualization
+</a></li><li class="dropdown-item"><!----> <a href="/dl/" class="nav-link">
+  Deep Learning
+</a></li><li class="dropdown-item"><!----> <a href="/dc/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/qa/" class="nav-link">
+  Q&amp;A
+</a></li><li class="dropdown-item"><!----> <a href="/svc/" class="nav-link router-link-active">
+  Backend Services
+</a></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">
+  关于
+</a></div><div class="nav-item"><a href="https://www.github.com/bugwriter2" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/svc/ElasticSearch.html" aria-current="page" class="active sidebar-link">ElasticSearch</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/svc/ElasticSearch.html#operations" class="sidebar-link">Operations</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/svc/ElasticSearch.html#create" class="sidebar-link">Create</a></li><li class="sidebar-sub-header"><a href="/svc/ElasticSearch.html#count" class="sidebar-link">Count</a></li><li class="sidebar-sub-header"><a href="/svc/ElasticSearch.html#delete" class="sidebar-link">Delete</a></li></ul></li><li class="sidebar-sub-header"><a href="/svc/ElasticSearch.html#query" class="sidebar-link">Query</a></li><li class="sidebar-sub-header"><a href="/svc/ElasticSearch.html#analyze" class="sidebar-link">Analyze</a></li><li class="sidebar-sub-header"><a href="/svc/ElasticSearch.html#setting" class="sidebar-link">Setting</a></li></ul></li><li><a href="/svc/NetWork.html" class="sidebar-link">TLS 1.2 vs TLS 1.3</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="elasticsearch"><a href="#elasticsearch" class="header-anchor">#</a> ElasticSearch</h1> <h2 id="operations"><a href="#operations" class="header-anchor">#</a> Operations</h2> <h3 id="create"><a href="#create" class="header-anchor">#</a> Create</h3> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">from</span> elasticsearch <span class="token keyword">import</span> Elasticsearch
+es <span class="token operator">=</span> Elasticsearch<span class="token punctuation">(</span><span class="token string">'http://localhost:9200'</span><span class="token punctuation">)</span>
+
+mapping <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;mappings&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;properties&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;context&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;type&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;text&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;fields&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;keyword&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;type&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;keyword&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;ignore_above&quot;</span><span class="token punctuation">:</span> <span class="token number">256</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;item_code&quot;</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">&quot;type&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;text&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;fields&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;keyword&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;type&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;keyword&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;ignore_above&quot;</span><span class="token punctuation">:</span> <span class="token number">256</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;settings&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;index.search.slowlog.threshold.query.warn&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;1s&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;index.search.slowlog.threshold.fetch.warn&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;1s&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;analysis&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;analyzer&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                <span class="token string">&quot;demo_analyzer&quot;</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">&quot;tokenizer&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;demo_tokenizer&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;filter&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;custom_stop&quot;</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;filter&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                <span class="token string">&quot;custom_stop&quot;</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">&quot;type&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;stop&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;stopwords&quot;</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">&quot;.&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token string">&quot;custom_gram&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;type&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;common_grams&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;common_words&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;x&quot;</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;tokenizer&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                <span class="token string">&quot;demo_tokenizer&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                    <span class="token string">&quot;type&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;pattern&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;pattern&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;([^\\p{L}\\d.]+))&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;lowercase&quot;</span><span class="token punctuation">:</span> true<span class="token punctuation">,</span> <span class="token string">&quot;flags&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;UNICODE_CHARACTER_CLASS&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+es<span class="token punctuation">.</span>indices<span class="token punctuation">.</span>create<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'custom_index'</span><span class="token punctuation">,</span> body<span class="token operator">=</span>mapping<span class="token punctuation">)</span>
+
+records <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">'item_code'</span><span class="token punctuation">:</span> <span class="token string">'123'</span><span class="token punctuation">,</span> <span class="token string">'context'</span><span class="token punctuation">:</span> <span class="token string">'2333'</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+idx <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">for</span> _<span class="token punctuation">,</span> document_list <span class="token keyword">in</span> records<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> one_document <span class="token keyword">in</span> document_list<span class="token punctuation">:</span>
+        es<span class="token punctuation">.</span>index<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'custom_index'</span><span class="token punctuation">,</span> <span class="token builtin">id</span><span class="token operator">=</span>idx<span class="token punctuation">,</span> body<span class="token operator">=</span>one_document<span class="token punctuation">)</span>
+        idx <span class="token operator">+=</span> <span class="token number">1</span>
+</code></pre></div><h3 id="count"><a href="#count" class="header-anchor">#</a> Count</h3> <div class="language-python extra-class"><pre class="language-python"><code>es<span class="token punctuation">.</span>count<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'custom_index'</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="delete"><a href="#delete" class="header-anchor">#</a> Delete</h3> <div class="language-python extra-class"><pre class="language-python"><code>es<span class="token punctuation">.</span>indices<span class="token punctuation">.</span>delete<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'po_table'</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="query"><a href="#query" class="header-anchor">#</a> Query</h2> <div class="language-python extra-class"><pre class="language-python"><code><span class="token triple-quoted-string string">&quot;&quot;&quot;GET index/_search&quot;&quot;&quot;</span>
+
+
+<span class="token comment"># simple search</span>
+<span class="token punctuation">{</span>
+    <span class="token string">&quot;query&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;match&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;$FIELD&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;some value&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># term search</span>
+<span class="token punctuation">{</span>
+    <span class="token string">&quot;query&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;terms&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;$FIELD&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                <span class="token string">&quot;some value&quot;</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># multi search</span>
+<span class="token punctuation">{</span>
+    <span class="token string">&quot;query&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;multi_match&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;type&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;most_fields&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;query&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;some text&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;fields&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;$FIELD1&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;$FIELD2^2&quot;</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># span search</span>
+<span class="token punctuation">{</span>
+    <span class="token string">&quot;query&quot;</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+        <span class="token string">&quot;span_near&quot;</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;clauses&quot;</span> <span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span> <span class="token string">&quot;span_term&quot;</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;$FIELD1&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;25&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span> <span class="token string">&quot;span_term&quot;</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;$FIELD1&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;25&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span> <span class="token string">&quot;span_term&quot;</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">&quot;$FIELD1&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;3&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;slop&quot;</span> <span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;boost&quot;</span><span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;in_order&quot;</span> <span class="token punctuation">:</span> true
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment"># filter after search</span>
+<span class="token punctuation">{</span>
+    <span class="token string">&quot;size&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;query&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;bool&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;must&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span>
+                    <span class="token string">&quot;match&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                        <span class="token string">&quot;$FIELD&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;some value&quot;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;filter&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span>
+                    <span class="token string">&quot;terms&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                        <span class="token string">&quot;$FIELD&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;some value1&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;some value2&quot;</span><span class="token punctuation">]</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="analyze"><a href="#analyze" class="header-anchor">#</a> Analyze</h2> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># POST index/_analyze</span>
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;analyzer&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;standard&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;text&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;some text&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="setting"><a href="#setting" class="header-anchor">#</a> Setting</h2> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># POST po_test/_close</span>
+<span class="token comment"># PUT po_test/_settings</span>
+<span class="token comment"># POST po_test/_open</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">6/3/2022, 6:07:38 PM</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/svc/NetWork.html">
+        TLS 1.2 vs TLS 1.3
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.3fa2a2e1.js" defer></script><script src="/assets/js/2.057925ea.js" defer></script><script src="/assets/js/38.a184b552.js" defer></script>
+  </body>
+</html>

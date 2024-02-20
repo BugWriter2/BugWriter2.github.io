@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dockerfile | 学习笔记</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    <link rel="icon" href="/img/logo.ico">
+    <link rel="manifest" href="/manifest.json"><link rel='canonical' href='https://bugwriter2.github.io/dc/Dockerfile.html'/>
+    <meta name="description" content="博客">
+    <meta name="google-site-verification" content="PXbr-y9acmnnEmw1zgCFEydL32xlZIf1OfFmzDFUrzI">
+    <link rel="preload" href="/assets/css/0.styles.9ce6ac63.css" as="style"><link rel="preload" href="/assets/js/app.3fa2a2e1.js" as="script"><link rel="preload" href="/assets/js/2.057925ea.js" as="script"><link rel="preload" href="/assets/js/7.f7f97492.js" as="script"><link rel="prefetch" href="/assets/js/10.9a53695e.js"><link rel="prefetch" href="/assets/js/11.e6f60bd9.js"><link rel="prefetch" href="/assets/js/12.90f3d785.js"><link rel="prefetch" href="/assets/js/13.42e681ed.js"><link rel="prefetch" href="/assets/js/14.7a85d7cd.js"><link rel="prefetch" href="/assets/js/15.402110d9.js"><link rel="prefetch" href="/assets/js/16.776ab4c1.js"><link rel="prefetch" href="/assets/js/17.4af5340c.js"><link rel="prefetch" href="/assets/js/18.bd060f5e.js"><link rel="prefetch" href="/assets/js/19.ac40939f.js"><link rel="prefetch" href="/assets/js/20.ac68ccd2.js"><link rel="prefetch" href="/assets/js/21.90d4b479.js"><link rel="prefetch" href="/assets/js/22.044d8e2b.js"><link rel="prefetch" href="/assets/js/23.606676bb.js"><link rel="prefetch" href="/assets/js/24.e8a14162.js"><link rel="prefetch" href="/assets/js/25.ebdc5e35.js"><link rel="prefetch" href="/assets/js/26.efd6b8fb.js"><link rel="prefetch" href="/assets/js/27.649d5e23.js"><link rel="prefetch" href="/assets/js/28.1c7ccf18.js"><link rel="prefetch" href="/assets/js/29.f0ca98d8.js"><link rel="prefetch" href="/assets/js/3.7c0ca1fc.js"><link rel="prefetch" href="/assets/js/30.540536d8.js"><link rel="prefetch" href="/assets/js/31.3cc7b8a3.js"><link rel="prefetch" href="/assets/js/32.02879a8f.js"><link rel="prefetch" href="/assets/js/33.b1417b92.js"><link rel="prefetch" href="/assets/js/34.0b5079cd.js"><link rel="prefetch" href="/assets/js/35.2828b1d3.js"><link rel="prefetch" href="/assets/js/36.d0d0971a.js"><link rel="prefetch" href="/assets/js/37.6cc365c3.js"><link rel="prefetch" href="/assets/js/38.a184b552.js"><link rel="prefetch" href="/assets/js/39.84a689f9.js"><link rel="prefetch" href="/assets/js/4.7a06b201.js"><link rel="prefetch" href="/assets/js/40.c2d886c6.js"><link rel="prefetch" href="/assets/js/5.0de0ba0e.js"><link rel="prefetch" href="/assets/js/6.cb2a4e71.js"><link rel="prefetch" href="/assets/js/8.7c626f1f.js"><link rel="prefetch" href="/assets/js/9.b014d1e7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9ce6ac63.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">学习笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博文" class="dropdown-title"><span class="title">博文</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/python/" class="nav-link">
+  Python
+</a></li><li class="dropdown-item"><!----> <a href="/dv/" class="nav-link">
+  Data Visualization
+</a></li><li class="dropdown-item"><!----> <a href="/dl/" class="nav-link">
+  Deep Learning
+</a></li><li class="dropdown-item"><!----> <a href="/dc/" class="nav-link router-link-active">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/qa/" class="nav-link">
+  Q&amp;A
+</a></li><li class="dropdown-item"><!----> <a href="/svc/" class="nav-link">
+  Backend Services
+</a></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">
+  关于
+</a></div><div class="nav-item"><a href="https://www.github.com/bugwriter2" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博文" class="dropdown-title"><span class="title">博文</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/python/" class="nav-link">
+  Python
+</a></li><li class="dropdown-item"><!----> <a href="/dv/" class="nav-link">
+  Data Visualization
+</a></li><li class="dropdown-item"><!----> <a href="/dl/" class="nav-link">
+  Deep Learning
+</a></li><li class="dropdown-item"><!----> <a href="/dc/" class="nav-link router-link-active">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/qa/" class="nav-link">
+  Q&amp;A
+</a></li><li class="dropdown-item"><!----> <a href="/svc/" class="nav-link">
+  Backend Services
+</a></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">
+  关于
+</a></div><div class="nav-item"><a href="https://www.github.com/bugwriter2" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/dc/Commands.html" class="sidebar-link">Commands</a></li><li><a href="/dc/Dockerfile.html" aria-current="page" class="active sidebar-link">Dockerfile</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/dc/Dockerfile.html#entrypoint-vs-cmd" class="sidebar-link">ENTRYPOINT vs CMD</a></li><li class="sidebar-sub-header"><a href="/dc/Dockerfile.html#entrypoint" class="sidebar-link">ENTRYPOINT</a></li><li class="sidebar-sub-header"><a href="/dc/Dockerfile.html#cmd" class="sidebar-link">CMD</a></li><li class="sidebar-sub-header"><a href="/dc/Dockerfile.html#env" class="sidebar-link">ENV</a></li><li class="sidebar-sub-header"><a href="/dc/Dockerfile.html#arg" class="sidebar-link">ARG</a></li><li class="sidebar-sub-header"><a href="/dc/Dockerfile.html#dockerignore" class="sidebar-link">.dockerignore</a></li></ul></li><li><a href="/dc/Kubernetes.html" class="sidebar-link">Kubernetes</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="dockerfile"><a href="#dockerfile" class="header-anchor">#</a> Dockerfile</h1> <h2 id="entrypoint-vs-cmd"><a href="#entrypoint-vs-cmd" class="header-anchor">#</a> ENTRYPOINT vs CMD</h2> <table><thead><tr><th></th> <th>No ENTRYPOINT</th> <th>ENTRYPOINT exec_entry p1_entry</th> <th>ENTRYPOINT [“exec_entry”, “p1_entry”]</th></tr></thead> <tbody><tr><td>No CMD</td> <td>error, not allowed</td> <td>/bin/sh -c exec_entry p1_entry</td> <td>exec_entry p1_entry</td></tr> <tr><td>CMD [“exec_cmd”, “p1_cmd”]</td> <td>exec_cmd p1_cmd</td> <td>/bin/sh -c exec_entry p1_entry</td> <td>exec_entry p1_entry exec_cmd p1_cmd</td></tr> <tr><td>CMD [“p1_cmd”, “p2_cmd”]</td> <td>p1_cmd p2_cmd</td> <td>/bin/sh -c exec_entry p1_entry</td> <td>exec_entry p1_entry p1_cmd p2_cmd</td></tr> <tr><td>CMD exec_cmd p1_cmd</td> <td>/bin/sh -c exec_cmd p1_cmd</td> <td>/bin/sh -c exec_entry p1_entry</td> <td>exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd</td></tr></tbody></table> <h2 id="entrypoint"><a href="#entrypoint" class="header-anchor">#</a> ENTRYPOINT</h2> <ol><li><p>exec</p> <p><code>ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code></p> <p>Example:</p> <div class="language- extra-class"><pre class="language-text"><code>FROM ubuntu
+ENTRYPOINT [&quot;top&quot;, &quot;-b&quot;]
+CMD [&quot;-c&quot;]
+</code></pre></div><p>Run:
+Command line arguments to docker run <image> will be appended after all elements in an exec form ENTRYPOINT, and will override all elements specified using CMD</image></p> <div class="language- extra-class"><pre class="language-text"><code>docker run -it --rm --name test  top -H
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>top -b -H
+</code></pre></div></li> <li><p>shell</p> <p><code>ENTRYPOINT command param1 param2</code></p></li></ol> <h2 id="cmd"><a href="#cmd" class="header-anchor">#</a> CMD</h2> <p>CMD commands are ignored by Daemon when there are parameters stated within the docker run command</p> <h2 id="env"><a href="#env" class="header-anchor">#</a> ENV</h2> <p>The <code>ENV</code> instruction sets the environment variable to the value. The environment variables set using <code>ENV</code> will persist when a container is run from the resulting image.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># to override</span>
+docker run -e <span class="token assign-left variable">xx</span><span class="token operator">=</span>yy
+</code></pre></div><h2 id="arg"><a href="#arg" class="header-anchor">#</a> ARG</h2> <p>They are only available from the moment they are ‘announced’ in the Dockerfile with an ARG instruction up to the moment when the image is built. Running containers can’t access values of ARG variables.</p> <div class="language-docker extra-class"><pre class="language-docker"><code><span class="token keyword">ARG</span> some_variable_name
+<span class="token comment"># or with a hard-coded default:</span>
+<span class="token comment">#ARG some_variable_name=default_value</span>
+<span class="token comment"># ${xx:-yy}</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>docker build --build-arg <span class="token assign-left variable">some_variable_name</span><span class="token operator">=</span>a_value
+</code></pre></div><h2 id="dockerignore"><a href="#dockerignore" class="header-anchor">#</a> .dockerignore</h2> <p><code>DOCKER_BUILDKIT=1 docker ...</code>: as long as <strong>.dockerignore</strong> is in the same directory of <strong>Dockerfile</strong>, it will be processed.</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">3/11/2022, 9:08:49 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/dc/Commands.html" class="prev">
+        Commands
+      </a></span> <span class="next"><a href="/dc/Kubernetes.html">
+        Kubernetes
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.3fa2a2e1.js" defer></script><script src="/assets/js/2.057925ea.js" defer></script><script src="/assets/js/7.f7f97492.js" defer></script>
+  </body>
+</html>
